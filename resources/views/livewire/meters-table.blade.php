@@ -3,15 +3,19 @@
     <div class="col-lg-12">
         <div class="card">
         <div class="card-body">
+            <div class="filter" style="text-align: right; margin-right: 0%; margin-top: 5px;">
+                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                  <li class="dropdown-header text-start">
+                    <h6>Filter</h6>
+                  </li>        
+                  <li><a wire:click.prevent="get_pd_meters" class="dropdown-item" href="#">PD Meters</a></li>
+                  <li><a wire:click.prevent="get_hhc_meters" class="dropdown-item" href="#">HHC Meters</a></li>
+                  <li><a wire:click.prevent="get_zn_meters" class="dropdown-item" href="#">ZN Meters</a></li>
+                </ul>
+            </div>
             <h5 class="card-title">Meters</h5>
             <!-- Table with stripped rows -->
-            <div class="row">
-                <div class="col-lg-6">
-                    <button type="button" class="btn btn-outline-primary"><i class="bi bi-star me-1"></i> HHC </button>
-                    <button type="button" class="btn btn-outline-primary"><i class="bi bi-star me-1"></i> PD </button>
-                    <button type="button" class="btn btn-outline-primary"><i class="bi bi-star me-1"></i> ZN </button>
-                </div>
-            </div>
             <div id="meters-table-container" >
             <table class="table datatable" >
             <thead>
@@ -24,7 +28,9 @@
                     <th>District</th>
                     <th>CBWSO</th>
                     <th data-type="date" data-format="YYYY/DD/MM">Date</th>
-                    <th>Balance</th>
+                    @if ($meter_type != "PD" && $meter_type != "ZN")
+                        <th>Balance</th>
+                    @endif
                     <th>Status</th>
                 </tr>
             </thead>
@@ -37,7 +43,13 @@
                         <td>{{ $meter->district }}</td>
                         <td>{{ $meter->cbwso }}</td>
                         <td>{{ $meter->getFormattedDateAttribute() }}</td>
-                        <td>{{ $meter->balance }}</td>
+                        @if ($meter_type != "PD" && $meter_type != "ZN")
+                            @if ($meter->type == "HHC")
+                                <td>{{ $meter->balance }}</td>
+                            @else 
+                                <td></td>
+                            @endif
+                        @endif
                         <td>              
                             
                             @if($meter->status == 1)
@@ -59,3 +71,8 @@
     </div>
     </div>
 </section>
+<script>
+    document.querySelectorAll('#dynamicContent script').forEach(script => {
+                eval(script.innerText); // Execute script content again
+            });
+</script>

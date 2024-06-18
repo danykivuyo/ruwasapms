@@ -10,6 +10,8 @@ use Livewire\Component;
 class MetersTable extends Component
 {
     public $meters;
+    public $meter_store;
+    public $meter_type = "HHC";
 
     public function __construct()
     {
@@ -28,7 +30,32 @@ class MetersTable extends Component
         } else {
             $this->meters = [];
         }
+        $this->meter_store = $this->meters;
 
+    }
+
+    public function get_pd_meters()
+    {
+        $this->meter_type = "PD";
+        $this->meters = $this->meter_store
+            ->where('type', "PD");
+        $this->render();
+    }
+
+    public function get_hhc_meters()
+    {
+        $this->meter_type = "HHC";
+        $this->meters = $this->meter_store
+            ->where('type', "HHC");
+        $this->render();
+    }
+
+    public function get_zn_meters()
+    {
+        $this->meter_type = "ZN";
+        $this->meters = $this->meter_store
+            ->where('type', "ZN");
+        $this->render();
 
     }
     public function render()
