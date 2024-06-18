@@ -16,7 +16,6 @@ class MeterRegisterForm extends Component
     public $cbwso;
     public $meter_id;
     public $meter_number;
-    public $balance;
     public $type;
     public $lat;
     public $lon;
@@ -28,7 +27,6 @@ class MeterRegisterForm extends Component
         'cbwso' => 'required|string|max:255',
         'region' => 'required|string|max:255',
         'district' => 'required|string|max:255',
-        'balance' => 'required|string|max:255',
         'type' => 'required|string|max:255',
         'lat' => 'required|string|max:255',
         'lon' => 'required|string|max:255'
@@ -92,7 +90,7 @@ class MeterRegisterForm extends Component
             'cbwso' => strtolower($this->cbwso),
             'region' => $this->region,
             'district' => $this->district,
-            'balance' => $this->balance,
+            'balance' => '',
             'type' => $this->type,
             'lat' => $this->lat,
             'lon' => $this->lon,
@@ -102,13 +100,12 @@ class MeterRegisterForm extends Component
 
         $sms = new SMSController;
 
-        $sms->meter_register_sms($this->meter_id, $this->meter_number, $this->balance);
+        $sms->meter_register_sms($this->meter_id, $this->meter_number, 0);
 
         $this->reset([
             'meter_id',
             'meter_number',
             'cbwso',
-            'balance',
             'type',
             'lat',
             'lon',

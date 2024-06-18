@@ -31,6 +31,62 @@
         @vite([ 'resources/js/app.js'])
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
         <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+        <style>
+         :root {
+            --border-width: 7px;
+          }
+
+          * {
+            margin: 0;
+            padding: 0;
+          }
+
+         
+
+          .sec-loading {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .sec-loading .one {
+            height: 80px;
+            width: 80px;
+            border: var(--border-width) solid #4f61f2;
+            transform: rotate(45deg);
+            border-radius: 0 50% 50% 50%;
+            position: relative;
+            animation: move 0.5s linear infinite alternate-reverse;
+          }
+          .sec-loading .one::before {
+            content: "";
+            position: absolute;
+            height: 55%;
+            width: 55%;
+            border-radius: 50%;
+            border: var(--border-width) solid transparent;
+            border-top-color: #4f61f2;
+            border-bottom-color: #4f61f2;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: rotate 1s linear infinite;
+          }
+
+          @keyframes rotate {
+            to {
+              transform: translate(-50%, -50%) rotate(360deg);
+            }
+          }
+          @keyframes move {
+            to {
+              transform: translateY(15px) rotate(45deg);
+            }
+          }
+
+        </style>
         @livewireStyles
     </head>
 <body class="antialiased">
@@ -40,6 +96,10 @@
     @include('layouts.partials.sidebar')
     <main id="main" class="main">      
       <livewire:alert />
+      <div wire:loading class="sec-loading">
+        <div class="one">
+        </div>
+      </div>
       @yield('content')
     </main>
 
@@ -68,6 +128,27 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    {{-- <script>
+      
+      function showPreloader() {
+        document.getElementById('preloader').style.display = 'block';
+      }
+      function hidePreloader() {
+        document.getElementById('preloader').style.display = 'none';
+      }
+
+      // document.addEventListener('wire:before-navigate',  () => {
+      //     showPreloader();
+      // });
+
+      document.addEventListener('wire:before-navigate', (event) => {
+        console.log("navigating");
+      });
+
+      document.addEventListener("livewire:navigated", () => {
+        hidePreloader();
+      });
+  </script> --}}
     @livewireScripts
 </body>
 </html>

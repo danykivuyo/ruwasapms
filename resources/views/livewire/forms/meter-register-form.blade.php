@@ -43,11 +43,6 @@
                 <input wire:model="cbwso" type="text" name="cbwso" class="form-control" id="cbwso">
             </div>
 
-            {{-- <div class="col-md-12">
-                <label for="balance" class="form-label">Starting Balance</label>
-                <input wire:model="balance" value="0" type="text" name="balance" class="form-control" id="balance">
-            </div> --}}
-
             <div class="col-md-6">
                 <label for="lat" class="form-label">Latitude</label>
                 <input wire:model="lat" type="text" name="lat" class="form-control" id="lat">

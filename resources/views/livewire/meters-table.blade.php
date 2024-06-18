@@ -5,6 +5,13 @@
         <div class="card-body">
             <h5 class="card-title">Meters</h5>
             <!-- Table with stripped rows -->
+            <div class="row">
+                <div class="col-lg-6">
+                    <button type="button" class="btn btn-outline-primary"><i class="bi bi-star me-1"></i> HHC </button>
+                    <button type="button" class="btn btn-outline-primary"><i class="bi bi-star me-1"></i> PD </button>
+                    <button type="button" class="btn btn-outline-primary"><i class="bi bi-star me-1"></i> ZN </button>
+                </div>
+            </div>
             <div id="meters-table-container" >
             <table class="table datatable" >
             <thead>

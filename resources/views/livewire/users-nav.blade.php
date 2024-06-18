@@ -5,7 +5,17 @@
     <ul id="users-nav" class="nav-content @if(Request::segment(1) === 'users') @else collapse @endif" data-bs-parent="#sidebar-nav" >
       <li>
         <a wire:navigate href="{{ route('transactions') }}">
-          <i class="bi bi-circle"></i><span>Users</span>
+          <i class="bi bi-circle"></i><span>Staff</span>
+        </a>
+      </li>
+      <li>
+        <a wire:navigate href="{{ route('transactions') }}">
+          <i class="bi bi-circle"></i><span>Clients</span>
+        </a>
+      </li>
+      <li>
+        <a wire:navigate href="{{ route('transactions') }}">
+          <i class="bi bi-circle"></i><span>Technicians</span>
         </a>
       </li>
     </ul>
