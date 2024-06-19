@@ -10,12 +10,12 @@
       </li>
       <li>
         <a wire:navigate href="{{ route('transactions') }}">
-          <i class="bi bi-circle"></i><span>Clients</span>
+          <i class="bi bi-circle"></i><span>Technicians</span>
         </a>
       </li>
       <li>
         <a wire:navigate href="{{ route('transactions') }}">
-          <i class="bi bi-circle"></i><span>Technicians</span>
+          <i class="bi bi-circle"></i><span>Clients</span>
         </a>
       </li>
     </ul>

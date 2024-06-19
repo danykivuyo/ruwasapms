@@ -13,8 +13,14 @@ class MetersTable extends Component
     public $meter_store;
     public $meter_type = "HHC";
 
+    public $type;
+    protected $queryString = [
+        'type' => ['except' => ''],
+    ];
+
     public function __construct()
     {
+
         $user = User::find(Auth::user()->id);
         if ($user->role == "cbwso") {
             $this->meters = Meter::all()
@@ -31,6 +37,8 @@ class MetersTable extends Component
             $this->meters = [];
         }
         $this->meter_store = $this->meters;
+
+
 
     }
 
@@ -57,6 +65,16 @@ class MetersTable extends Component
             ->where('type', "ZN");
         $this->render();
 
+    }
+
+    public function mount()
+    {
+        if ($this->type === "PD")
+            $this->get_pd_meters();
+        if ($this->type === "HHC")
+            $this->get_hhc_meters();
+        if ($this->type === "ZN")
+            $this->get_zn_meters();
     }
     public function render()
     {

@@ -34,6 +34,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/meters', [MeterController::class, 'meters'])->name('meters');
     Route::get('/meters/register', [MeterController::class, 'meters_register'])->name('meters.register');
+    Route::get('/meters/{type}', [MeterController::class, 'meters'])->name('meters.filter');
+    // Route::get('/meters/hhc', [MeterController::class, 'meters_hhc'])->name('meters.hhc');
+    // Route::get('/meters/pd', [MeterController::class, 'meters_pd'])->name('meters.pd');
+    // Route::get('/meters/zn', [MeterController::class, 'meters_zn'])->name('meters.zn');
 
     Route::get('/cbwso', [CbwsoController::class, 'index'])->name('cbwso.index');
     Route::get('/cbwso/register', [CbwsoController::class, 'register'])->name('cbwso.register');

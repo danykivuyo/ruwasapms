@@ -7,12 +7,13 @@ use Illuminate\Http\Request;
 class MeterController extends Controller
 {
     //
-    public function meters()
+    public function meters($type = null)
     {
         return view('meters');
     }
 
-    public function meters_register() {
+    public function meters_register()
+    {
         return view('meters-register');
     }
 }

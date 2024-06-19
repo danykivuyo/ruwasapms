@@ -8,10 +8,11 @@
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                   <li class="dropdown-header text-start">
                     <h6>Filter</h6>
-                  </li>        
-                  <li><a wire:click.prevent="get_pd_meters" class="dropdown-item" href="#">PD Meters</a></li>
-                  <li><a wire:click.prevent="get_hhc_meters" class="dropdown-item" href="#">HHC Meters</a></li>
-                  <li><a wire:click.prevent="get_zn_meters" class="dropdown-item" href="#">ZN Meters</a></li>
+                  </li>
+                  <li><a wire:navigate class="dropdown-item" href="{{ route('meters') }}">All Meters</a></li>        
+                  <li><a wire:navigate class="dropdown-item" href="{{ route('meters', ['type' => 'PD']) }}">PD Meters</a></li>
+                  <li><a wire:navigate class="dropdown-item" href="{{ route('meters', ['type' => 'HHC']) }}">HHC Meters</a></li>
+                  <li><a wire:navigate class="dropdown-item" href="{{ route('meters', ['type' => 'ZN']) }}">ZN Meters</a></li>
                 </ul>
             </div>
             <h5 class="card-title">Meters</h5>
