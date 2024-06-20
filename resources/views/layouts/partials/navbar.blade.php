@@ -29,7 +29,7 @@
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">1</span>
+            <span class="badge bg-primary badge-number">0</span>
           </a><!-- End Notification Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
@@ -44,9 +44,9 @@
             <li class="notification-item">
               <i class="bi bi-exclamation-circle text-warning"></i>
               <div>
-                <h4>Lorem Ipsum</h4>
+                {{-- <h4>Lorem Ipsum</h4>
                 <p>Quae dolorem earum veritatis oditseno</p>
-                <p>30 min. ago</p>
+                <p>30 min. ago</p> --}}
               </div>
             </li>
 
@@ -104,7 +104,7 @@
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-chat-left-text"></i>
-            <span class="badge bg-success badge-number">1</span>
+            <span class="badge bg-success badge-number">0</span>
           </a><!-- End Messages Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
@@ -118,11 +118,11 @@
 
             <li class="message-item">
               <a href="#">
-                <img src="{{ asset('assets/img/messages-1.jpg') }}" alt="" class="rounded-circle">
+                {{-- <img src="{{ asset('assets/img/messages-1.jpg') }}" alt="" class="rounded-circle"> --}}
                 <div>
-                  <h4>Maria Hudson</h4>
+                  {{-- <h4>Maria Hudson</h4>
                   <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>4 hrs. ago</p>
+                  <p>4 hrs. ago</p> --}}
                 </div>
               </a>
             </li>
