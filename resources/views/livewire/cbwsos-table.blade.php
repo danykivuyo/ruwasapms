@@ -17,7 +17,7 @@
                             <th>Tarrif</th>
                             <th>Income</th>
                             <th data-type="date" data-format="YYYY/DD/MM">Date</th>
-
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,6 +29,7 @@
                                 <td>{{ $cbwso->tarrif }}</td>
                                 <td>{{ $cbwso->yearly_income }}</td>
                                 <td>{{ $cbwso->getFormattedDateAttribute() }}</td>
+                                <td><button wire:click.prevent="delete({{$cbwso->id}})" type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button>
                             </tr>
                         @endforeach
                     </tbody>

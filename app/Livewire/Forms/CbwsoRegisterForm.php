@@ -15,7 +15,7 @@ class CbwsoRegisterForm extends Component
     public $district;
     public $name;
     public $tarrif;
-    public $comment;
+    public $comment = "";
 
     protected $rules = [
         'name' => 'required|string|max:255',

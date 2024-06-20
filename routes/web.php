@@ -44,7 +44,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/purchase', [PurchaseController::class, 'purchase'])->name('purchase');
     Route::get('/purchase/history', [PurchaseController::class, 'history'])->name('purchase.history');
     Route::get('/transactions', [TransactionsController::class, 'transactions'])->name('transactions');
-    Route::get('/customers', function () {
+    Route::get('/users/customers', function () {
         return view('customers');
     })->name('customers');
 });

@@ -10,9 +10,10 @@ use Livewire\Component;
 class CbwsosTable extends Component
 {
     public $cbwsos;
+    public $cbwso_id;
 
     public function __construct()
-    {   
+    {
         $user = User::find(Auth::user()->id);
         if ($user->role == "cbwso") {
             $this->cbwsos = Cbwso::all()
@@ -28,6 +29,20 @@ class CbwsosTable extends Component
         } else {
             $this->cbwsos = [];
         }
+    }
+
+    public function delete($id)
+    {
+        $this->cbwso_id = $id;
+        $cbwso = Cbwso::find($this->cbwso_id);
+        if ($cbwso) {
+            $cbwso->delete();
+            session()->flash('message', 'Cbwso deleted successfully.');
+        } else {
+            session()->flash('error', 'Cbwso Not found');
+        }
+        $this->redirect('cbwso', navigate: true);
+        return;
     }
     public function render()
     {
