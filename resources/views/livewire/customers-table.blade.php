@@ -18,6 +18,7 @@
                             <th>Balance</th>
                             <th>Control No</th>
                             <th data-type="date" data-format="YYYY/DD/MM">Date</th>
+                            <th>Action</th>
 
                         </tr>
                     </thead>
@@ -30,6 +31,8 @@
                                 <td>{{ $customer->balance }}</td>
                                 <td>{{ $customer->control_number }}</td>
                                 <td>{{ $customer->getFormattedDateAttribute() }}</td>
+                                <td><button wire:click.prevent="delete({{$customer->id}})" type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
