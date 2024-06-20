@@ -12,17 +12,13 @@ return new class extends Migration {
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('meter_id');
+            $table->string('meter_id');
             $table->string('name')->nullable();
             $table->string('phone')->nullable();
             $table->string('house_number')->nullable();
             $table->string('tag_id');
             $table->string('balance');
             $table->timestamps();
-
-            $table->foreign('meter_id')
-                ->references('id')
-                ->on('meters');
         });
     }
 

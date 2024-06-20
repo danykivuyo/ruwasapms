@@ -30,8 +30,25 @@
         <!-- Vertical Form -->
         <form wire:submit.prevent="register" class="row g-3">
             <div class="col-12">
+                <select wire:model="region" class="form-select" id="region" name="region" wire:model="region" wire:change="update_region($event.target.value)">
+                    <option value="">Select Region</option>
+                    @foreach ($regions as $reg)
+                        <option value="{{ $reg['name'] }}">{{ $reg['name'] }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="col-12">
+                    <select wire:model="district" class="form-select" name="district" id="district" aria-label="Floating label select example" wire:change="update_district($event.target.value)">
+                        <option selected>Select district</option>
+                            @foreach ($districts as $district)
+                                <option value="{{ $district['name'] }}">{{ $district['name'] }}</h3>
+                            @endforeach
+                    </select>
+            </div>
+            <div class="col-12">
                 <label for="client_name" class="form-label">Client Name</label>
-                <input  type="text" class="form-control" id="client_name" name="client_name">
+                <input wire:model="client_name"  type="text" class="form-control" id="client_name" name="client_name">
             </div>
 
             <div class="col-12">
@@ -45,13 +62,19 @@
             </div>
 
             <div class="col-6">
-                <label for="client_meter_id" class="form-label">Meter ID</label>
-                <input wire:model = "client_meter_id" type="text" class="form-control" id="client_meter_id" name="client_meter_id">
+                <label for="meter_id" class="form-label">Meter ID</label>
+                {{-- <input wire:model = "client_meter_id" type="text" class="form-control" id="client_meter_id" name="client_meter_id"> --}}
+                <select wire:model="meter_id" class="form-select" id="meter_id" name="meter_id" wire:model="meter_id">
+                    <option value="">Select Meter</option>
+                    @foreach ($meter_ids as $meter_id)
+                        <option value="{{ $meter_id->meter_id }}">{{ $meter_id->meter_id }}</option>
+                    @endforeach
+                </select>
             </div>
 
             <div class="col-6">
-                <label for="cliet_card_id" class="form-label">Tag/Card ID</label>
-                <input wire:model = "cliet_card_id" type="text" class="form-control" id="cliet_card_id" name="cliet_card_id">
+                <label for="client_card_id" class="form-label">Tag/Card ID</label>
+                <input wire:model = "client_card_id" type="text" class="form-control" id="client_card_id" name="client_card_id">
             </div>
             
             <div class="col-12">

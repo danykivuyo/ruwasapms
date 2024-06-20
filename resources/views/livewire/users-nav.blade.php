@@ -14,9 +14,15 @@
         </a>
       </li>
       <li>
-        <a wire:navigate href="{{ route('transactions') }}">
-          <i class="bi bi-circle"></i><span>Clients</span>
+        <a wire:navigate href="{{ route('customers') }}">
+          <i class="bi bi-circle"></i><span>Customers</span>
         </a>
       </li>
+      <li>
+        <a wire:navigate href="{{ route('transactions') }}">
+          <i class="bi bi-circle"></i><span>Register</span>
+        </a>
+      </li>
+
     </ul>
   </li><!-- End Components Nav -->

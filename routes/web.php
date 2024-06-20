@@ -44,6 +44,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/purchase', [PurchaseController::class, 'purchase'])->name('purchase');
     Route::get('/purchase/history', [PurchaseController::class, 'history'])->name('purchase.history');
     Route::get('/transactions', [TransactionsController::class, 'transactions'])->name('transactions');
+    Route::get('/customers', function () {
+        return view('customers');
+    })->name('customers');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

@@ -54,9 +54,10 @@
             </div>
 
             <div class="col-12">
-                <label for="comment" class="form-label">Comment</label>
+                <label for="comment" class="form-label">More Details</label>
                   <textarea wire:model="comment"  class="form-control" id="comment" style="height: 100px;"></textarea>
             </div>
+            <br><br><br><br>
 
             <div class="col-md-4">
                 <label for="meter_id" class="form-label">Meter ID</label>
