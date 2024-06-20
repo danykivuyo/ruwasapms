@@ -252,7 +252,6 @@ class MeterUserRegisterForm extends Component
             'client_number',
             'client_house_number',
             'client_card_id',
-            'control_number',
             'client_initial_amount'
         ]);
 
