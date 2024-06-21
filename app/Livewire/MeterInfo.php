@@ -16,10 +16,10 @@ class MeterInfo extends Component
     public $customer_name = "";
     public $customer_phone = "";
     public $customer_tag_id = "";
-    public $customers_tab_active = false;
+    public $customers_tab_active = true;
     public $properties_tab_active = false;
     public $meter_logs_tab_active = false;
-    public $edit_user_tab_active = true;
+    public $edit_user_tab_active = false;
 
     public $meter_no;
     public $meter_lat;
