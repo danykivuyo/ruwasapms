@@ -104,7 +104,12 @@ class MeterInfo extends Component
 
     public function properties_register()
     {
+        $meter = Meter::where('meter_id', $this->meter_no)->first();
+        $meter->meter_number = $this->meter_no;
+        $meter->lat = $this->lat;
+        $meter->lon = $this->lon;
 
+        $meter->save();
     }
 
     public function logs_register()
@@ -118,7 +123,7 @@ class MeterInfo extends Component
         $customer->name = $this->customer_name;
         $customer->phone = $this->customer_phone;
 
-
+        $customer->save();
     }
     public function render()
     {
