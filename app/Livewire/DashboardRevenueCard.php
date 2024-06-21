@@ -12,6 +12,22 @@ class DashboardRevenueCard extends Component
     public $daily_income;
     public $monthly_income;
     public $yearly_income;
+    public $income;
+
+    public function daily()
+    {
+        $this->income = $this->daily_income;
+    }
+
+    public function monthly()
+    {
+        $this->income = $this->monthly_income;
+    }
+
+    public function yearly()
+    {
+        $this->income = $this->yearly_income;
+    }
 
     public function mount()
     {

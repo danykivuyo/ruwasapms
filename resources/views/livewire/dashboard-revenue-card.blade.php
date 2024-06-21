@@ -7,9 +7,9 @@
                 <li class="dropdown-header text-start">
                     <h6>Filter</h6>
                 </li>
-                <li><a class="dropdown-item" href="#">Today</a></li>
-                <li><a class="dropdown-item" href="#">This Month</a></li>
-                <li><a class="dropdown-item" href="#">This Year</a></li>
+                <li><a wire:click.prevent="daily" class="dropdown-item" href="#">Today</a></li>
+                <li><a wire:click.prevent="monthly" class="dropdown-item" href="#">This Month</a></li>
+                <li><a wire:click.prevent="yearly" class="dropdown-item" href="#">This Year</a></li>
             </ul>
         </div>
 
@@ -21,7 +21,7 @@
                     <i class="bi bi-cash-stack"></i>
                 </div>
                 <div class="ps-3">
-                    <h6>TZS{{ number_format(2300, 0) }}</h6>
+                    <h6>TZS{{ number_format($income, 2) }}</h6>
                     <span class="text-success small pt-1 fw-bold">8%</span> <span
                         class="text-muted small pt-2 ps-1">increase</span>
 
