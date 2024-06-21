@@ -16,4 +16,9 @@ class MeterController extends Controller
     {
         return view('meters-register');
     }
+
+    public function meter()
+    {
+        return view('meter');
+    }
 }

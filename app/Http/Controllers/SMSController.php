@@ -54,7 +54,7 @@ class SMSController extends Controller
         $customer_number = $this->phone_format($customer_number);
 
         $postData = array(
-            'source_addr' => 'INFO',
+            'source_addr' => 'RUWASA-MUST',
             'encoding' => 0,
             'schedule_time' => '',
             'message' => 'Ndugu Mteja, Usajili wako mita namba ' . $meter_id . ' umekamilika. Namba ya Malipo ni ' . $control_number,

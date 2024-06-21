@@ -38,7 +38,8 @@
             <tbody>
                 @foreach($meters as $meter)
                     <tr>
-                        <td>{{ $meter->meter_id }}</td>
+                        
+                        <td><a wire:navigate href="{{ route('meter' , ['id' => $meter->id]) }}">{{ $meter->meter_id }}</a></td>
                         <td>{{ $meter->meter_number }}</td>
                         <td>{{ $meter->region }}</td>
                         <td>{{ $meter->district }}</td>
@@ -52,13 +53,15 @@
                             @endif
                         @endif
                         <td>              
-                            
-                            @if($meter->status == 1)
-                                <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> active</span>
+                            @if($meter->temp == 1)
+                                <span class="badge bg-warning"><i class="bi bi-check-circle me-1"></i> active</span>
                             @else
-                                <span class="badge bg-danger"><i class="bi bi-check-circle me-1"></i> inactive</span>
+                                @if($meter->status == 1)
+                                    <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> active</span>
+                                @else
+                                    <span class="badge bg-danger"><i class="bi bi-check-circle me-1"></i> inactive</span>
+                                @endif
                             @endif
-                           
                         </td>
                     </tr>
                 @endforeach

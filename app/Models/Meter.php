@@ -20,6 +20,7 @@ class Meter extends Model
         'type',
         'lat',
         'lon',
+        'temp',
         'comment'
     ];
 

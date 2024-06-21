@@ -32,6 +32,7 @@ Route::middleware(['auth'])->group(function () {
         return redirect()->route('home');
     });
 
+    Route::get('/meters/info', [MeterController::class, 'meter'])->name('meter');
     Route::get('/meters', [MeterController::class, 'meters'])->name('meters');
     Route::get('/meters/register', [MeterController::class, 'meters_register'])->name('meters.register');
     Route::get('/meters/{type}', [MeterController::class, 'meters'])->name('meters.filter');

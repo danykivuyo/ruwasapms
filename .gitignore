@@ -6,7 +6,6 @@
 /storage/*.key
 /vendor
 /public/assets
-/public/img
 .env
 .env.backup
 .env.production
