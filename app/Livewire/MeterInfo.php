@@ -122,8 +122,10 @@ class MeterInfo extends Component
         $customer = Customer::find($this->customer_id)->first();
         $customer->name = $this->customer_name;
         $customer->phone = $this->customer_phone;
-
         $customer->save();
+
+        $this->customers = Customer::all()
+            ->where('meter_id', $this->meter->meter_id);
     }
     public function render()
     {
