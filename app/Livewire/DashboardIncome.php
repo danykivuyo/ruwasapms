@@ -7,6 +7,8 @@ use Livewire\Component;
 class DashboardIncome extends Component
 {
     public $message;
+    public $regions_income;
+
     public function income_today()
     {
         $this->message = "Today";
