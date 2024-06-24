@@ -157,7 +157,7 @@ class SMSController extends Controller
         $branch_name = "BRANCH";
         if (app()->getLocale() == "sw") {
             $postData = array(
-                'source_addr' => 'DROID',
+                'source_addr' => 'RUWASA-MUST',
                 'encoding' => 0,
                 'schedule_time' => '',
                 'message' => "$app_name: Bidhaa $product_name ipo kiwango chini ya $minimum ($quantity) katika duka $branch_name, tafadhali ongeza bidhaa kuepusha usumbufu kwa wateja wako.",
@@ -165,7 +165,7 @@ class SMSController extends Controller
             );
         } else {
             $postData = array(
-                'source_addr' => 'DROID',
+                'source_addr' => 'RUWASA-MUST',
                 'encoding' => 0,
                 'schedule_time' => '',
                 'message' => "$app_name: The quantity of $product_name is below $minimum ($quantity) at $branch_name shop, please add stock to avoid trouble to your valuable customers.",
