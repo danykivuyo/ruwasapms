@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Http\Controllers\SMSController;
 use App\Models\Customer;
 use App\Models\Meter;
 use Livewire\Component;
@@ -85,6 +86,8 @@ class MeterInfo extends Component
     public function delete($id)
     {
         $meter = Meter::find($id);
+        $sms = new SMSController();
+        $sms->send_clear_command($meter->meter_number);
         $meter->delete();
         $this->redirect('meters', navigate: true);
     }
