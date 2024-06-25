@@ -84,7 +84,9 @@ class MeterInfo extends Component
 
     public function delete($id)
     {
-
+        $meter = Meter::find($id);
+        $meter->delete();
+        $this->redirect('meters', navigate: true);
     }
 
     public function temper($id)

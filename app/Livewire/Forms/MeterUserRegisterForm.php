@@ -3,6 +3,7 @@
 namespace App\Livewire\Forms;
 
 use App\Http\Controllers\SMSController;
+use App\Models\Cbwso;
 use App\Models\Customer;
 use App\Models\District;
 use App\Models\Meter;
@@ -231,7 +232,13 @@ class MeterUserRegisterForm extends Component
         ]);
 
         $meter = Meter::where('meter_id', $this->meter_id)->first();
-        $meter->balance = $this->client_initial_amount;
+        $cbwso = Cbwso::where('name', $meter->cbwso);
+        if ($cbwso) {
+            $meter->balance = $this->client_initial_amount / $cbwso->tarrif;
+        } else {
+            $meter->balance = $this->client_initial_amount / 1000;
+        }
+
 
 
         $sms = new SMSController();
@@ -240,10 +247,13 @@ class MeterUserRegisterForm extends Component
             $sms->meter_register_sms($this->client_card_id, $meter->meter_number, $this->client_initial_amount);
         }
 
+        if ($this->starts_with($this->meter_id, 'H')) {
+            $sms->hhc_recharge_sms($meter->meter_number, $meter->balance);
+        }
+
         $meter->save();
 
-        $sms->send_control_number($this->client_number, $this->meter_id, $this->control_number);
-
+        $sms->send_control_number($this->client_number, $this->meter_id, $this->control_number, $this->client_initial_amount);
         session()->flash('success', 'Client Registered Successfully!');
 
         $this->reset([
