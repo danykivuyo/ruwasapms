@@ -91,7 +91,7 @@ class MeterRegisterForm extends Component
             'cbwso' => strtolower($this->cbwso),
             'region' => $this->region,
             'district' => $this->district,
-            'balance' => '',
+            'balance' => '0',
             'type' => $this->type,
             'lat' => $this->lat,
             'lon' => $this->lon,
