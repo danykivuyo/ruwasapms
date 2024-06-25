@@ -233,7 +233,7 @@ class MeterUserRegisterForm extends Component
 
         $meter = Meter::where('meter_id', $this->meter_id)->first();
         $cbwso = Cbwso::where('name', $meter->cbwso);
-        if ($cbwso) {
+        if (isset($cbwso->tarrif)) {
             $meter->balance = $this->client_initial_amount / $cbwso->tarrif;
         } else {
             $meter->balance = $this->client_initial_amount / 1000;
