@@ -135,7 +135,7 @@ class SMSController extends Controller
         if ($balance == 0) {
             $sms = 'Ndugu Mteja, Usajili wako mita namba ' . $meter_id . ' umekamilika. Namba ya Malipo ni ' . $control_number;
         } else {
-            $sms = 'Ndugu Mteja, Usajili wako mita namba ' . $meter_id . ' umekamilika. Namba ya Malipo ni ' . $control_number . '. Salio la kuanzia ' . $balance;
+            $sms = 'Ndugu Mteja, Usajili wako mita namba ' . $meter_id . ' umekamilika. Namba ya Malipo ni ' . $control_number . '. Salio la kuanzia ' . number_format($balance, 2);
         }
         $postData = array(
             'source_addr' => 'RUWASA-MUST',
@@ -191,7 +191,7 @@ class SMSController extends Controller
         $meter_no = $this->phone_format($meter_no);
 
         $postData = array(
-            'source_addr' => 'DROID',
+            'source_addr' => 'RUWASA-MUST',
             'encoding' => 0,
             'schedule_time' => '',
             'message' => $sms,
