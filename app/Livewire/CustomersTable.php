@@ -28,7 +28,7 @@ class CustomersTable extends Component
         } else {
             session()->flash('error', 'Customer Not found');
         }
-        $this->redirect('users/customers', navigate: true);
+        $this->redirect('customers', navigate: true);
         return;
     }
 
