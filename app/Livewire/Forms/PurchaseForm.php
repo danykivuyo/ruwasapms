@@ -138,7 +138,7 @@ class PurchaseForm extends Component
             $user->balance = $user->balance + $this->amount;
             $user->save();
             $sms->hhc_recharge_sms($this->meter->meter_number, number_format($this->amount / $cbwso->tarrif, 2));
-            $sms->hhc_recharge_customer_sms($this->user->phone, $this->amount);
+            $sms->hhc_recharge_customer_sms($this->user->phone, $this->meter->meter_id, $this->amount, number_format($this->amount / $cbwso->tarrif, 2));
 
             $this->reset([
                 'meter_id',
