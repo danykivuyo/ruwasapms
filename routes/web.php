@@ -48,6 +48,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/users/customers', function () {
         return view('customers');
     })->name('customers');
+    Route::post('/purchase/submit', function (Request $request) {
+        return true;
+    })->name('purchase.submit');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

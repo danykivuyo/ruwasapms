@@ -232,15 +232,18 @@ class MeterUserRegisterForm extends Component
         ]);
 
         $meter = Meter::where('meter_id', $this->meter_id)->first();
-        $cbwso = Cbwso::where('name', $meter->cbwso);
+        $cbwso = Cbwso::where('name', $meter->cbwso)->first();
         if (isset($cbwso->tarrif)) {
-            $meter->balance = $this->client_initial_amount / $cbwso->tarrif;
+            $meter->balance = number_format($this->client_initial_amount / $cbwso->tarrif, 2);
         } else {
-            $meter->balance = $this->client_initial_amount / 1000;
+            session()->flash('error', 'Register This CBWSO first!');
+            return;
+            // $meter->balance = $this->client_initial_amount / 1000;
         }
-
-
-
+        $cbwso->daily_income = $cbwso->daily_income + $this->client_initial_amount;
+        $cbwso->monthly_income = $cbwso->monthly_income + $this->client_initial_amount;
+        $cbwso->yearly_income = $cbwso->yearly_income + $this->client_initial_amount;
+        $cbwso->save();
         $sms = new SMSController();
 
         if ($this->starts_with($this->meter_id, 'P')) {
