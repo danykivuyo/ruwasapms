@@ -110,7 +110,7 @@ class PurchaseForm extends Component
         if (str_starts_with($this->meter_id, 'H')) {
             $cbwso = Cbwso::where('name', $meter->cbwso)->first();
             if ($cbwso) {
-                $meter->balance = number_format(floatval($this->amount) / floatval($cbwso->tarrif), 2) + floatval($meter->balance);
+                $meter->balance = number_format(floatval($this->amount) / floatval($cbwso->tarrif), 2) + (floatval($this->user->balance) / floatval($cbwso->tarrif));
             } else {
                 session()->flash('error', 'Register This CBWSO first!');
                 return;
@@ -135,7 +135,7 @@ class PurchaseForm extends Component
             $meter->save();
             $this->meter = $meter;
             $user = Customer::where('id', $this->user->id)->first();
-            $user->balance = floatval($user->balance) + floatval($this->amount);
+            $user->balance = number_format((floatval($user->balance) + floatval($this->amount)), 2);
             $user->save();
             $sms->hhc_recharge_sms($this->meter->meter_number, number_format($this->amount / $cbwso->tarrif, 2));
             $sms->hhc_recharge_customer_sms($this->user->phone, $this->meter->meter_id, $this->amount, number_format($this->amount / $cbwso->tarrif, 2));

@@ -52,7 +52,7 @@ class SMSController extends Controller
         $secret_key = $this->secret_key;
 
         $meter_number = $this->phone_format($customer_number);
-        $sms = "Umefanikiwa kuongeza sailo. Mita namba " . $meter_id . ". Kiasi Tsh " . $balance . ". Units " . $units;
+        $sms = "Umefanikiwa kuongeza sailo. Mita namba " . $meter_id . ". Kiasi Tsh " . number_format($balance, 2) . ". Units " . $units;
         $postData = array(
             'source_addr' => 'RUWASA-MUST',
             'encoding' => 0,
