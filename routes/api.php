@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\MeterLogController;
+use App\Http\Controllers\SMSGateway;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('meter-logs', MeterLogController::class);
+
+Route::post('/sms-gateway', [SMSGateway::class, 'meter']);
