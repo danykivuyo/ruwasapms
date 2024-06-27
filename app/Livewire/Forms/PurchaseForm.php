@@ -110,7 +110,7 @@ class PurchaseForm extends Component
         if (str_starts_with($this->meter_id, 'H')) {
             $cbwso = Cbwso::where('name', $meter->cbwso)->first();
             if ($cbwso) {
-                $meter->balance = number_format(floatval($this->amount) / floatval($cbwso->tarrif), 2) + (floatval($this->user->balance) / floatval($cbwso->tarrif));
+                $meter->balance = number_format(floatval($this->amount) / floatval($cbwso->tarrif) + (floatval($this->user->balance) / floatval($cbwso->tarrif)), 4);
             } else {
                 session()->flash('error', 'Register This CBWSO first!');
                 return;
