@@ -67,7 +67,7 @@ class PurchaseForm extends Component
                     $this->user = $user;
                     $this->user_id = $this->user->tag_id;
                     $this->user_name = $this->user->name;
-                    $this->balance = number_format($this->user->balance, 2) . " TZS";
+                    $this->balance = number_format(floatval($this->user->balance), 2) . " TZS";
 
                 }
             } else if (str_starts_with($meter->meter_id, "P")) {

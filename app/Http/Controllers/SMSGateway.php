@@ -16,11 +16,14 @@ class SMSGateway extends Controller
     public function meter(Request $request)
     {
         $this->meter_number = substr($request->from_number, -9);
-        // $this->meter_number = "0" + $this->meter_number;
+        $this->meter_number = "0" + $this->meter_number;
         $meter = Meter::where('meter_number', $this->meter_number)->first();
         // return $this->meter_number;
+        // return $meter->cbwso;
         preg_match('/#(\d+\.\d+)\r\n#0$/', $request->sms, $matches);
-
+        preg_match('/#(\d+\.\d{2})\\\\r\\\\n/', $request->sms, $matches);
+        // return $matches;
+        return "$request->sms";
         if (!empty($matches)) {
             $cbwso = Cbwso::where('name', $meter->cbwso)->first();
             $customer = Customer::where('meter_id', $meter->meter_id)->first();
