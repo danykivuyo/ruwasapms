@@ -22,7 +22,7 @@ class SMSGateway extends Controller
         // return $meter->cbwso;
         // preg_match('/#(\d+\.\d+)\r\n#0$/', $request->sms, $matches);
         preg_match('/#(\d+\.\d{2})\\\\r\\\\n/', $request->sms, $matches);
-        // return $matches;
+        return $matches;
         return "$request->sms";
         if (!empty($matches)) {
             $cbwso = Cbwso::where('name', $meter->cbwso)->first();
