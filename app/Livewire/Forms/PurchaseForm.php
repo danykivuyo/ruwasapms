@@ -110,14 +110,14 @@ class PurchaseForm extends Component
         if (str_starts_with($this->meter_id, 'H')) {
             $cbwso = Cbwso::where('name', $meter->cbwso)->first();
             if ($cbwso) {
-                $meter->balance = number_format($this->amount / $cbwso->tarrif, 2) + $meter->balance;
+                $meter->balance = number_format(floatval($this->amount) / floatval($cbwso->tarrif), 2) + floatval($meter->balance);
             } else {
                 session()->flash('error', 'Register This CBWSO first!');
                 return;
                 // $meter->balance = ($this->amount / 1000) + $meter->balance;
             }
             if ($cbwso->updated_at->isToday()) {
-                $cbwso->daily_income = $cbwso->daily_income + $this->amount;
+                $cbwso->daily_income = floatval($cbwso->daily_income) + floatval($this->amount);
             } else {
                 $cbwso->daily_income = $this->amount;
             }
@@ -127,7 +127,7 @@ class PurchaseForm extends Component
                 $cbwso->monthly_income = $this->amount;
             }
             if ($cbwso->updated_at->isSameYear(Carbon::now())) {
-                $cbwso->yearly_income = $cbwso->yearly_income + $this->amount;
+                $cbwso->yearly_income = floatval($cbwso->yearly_income) + floatval($this->amount);
             } else {
                 $cbwso->yearly_income = $this->amount;
             }
@@ -135,7 +135,7 @@ class PurchaseForm extends Component
             $meter->save();
             $this->meter = $meter;
             $user = Customer::where('id', $this->user->id)->first();
-            $user->balance = $user->balance + $this->amount;
+            $user->balance = floatval($user->balance) + floatval($this->amount);
             $user->save();
             $sms->hhc_recharge_sms($this->meter->meter_number, number_format($this->amount / $cbwso->tarrif, 2));
             $sms->hhc_recharge_customer_sms($this->user->phone, $this->meter->meter_id, $this->amount, number_format($this->amount / $cbwso->tarrif, 2));
