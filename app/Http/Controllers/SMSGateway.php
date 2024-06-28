@@ -19,7 +19,7 @@ class SMSGateway extends Controller
         $this->meter_number = "0" + $this->meter_number;
         $meter = Meter::where('meter_number', $this->meter_number)->first();
         preg_match('/#(\d+\.\d+)\r\n#0$/', $request->sms, $match);
-        $matches = array();
+        $matches = null;
         if (isset($match[0])) {
             $matches = $match;
         } else {
@@ -36,8 +36,8 @@ class SMSGateway extends Controller
         if (isset($matches[1])) {
             $matches = $matches[1];
         }
-        return $matches;
-        if (!isset($matches)) {
+        return gettype($matches);
+        if ($matches != null) {
             $cbwso = Cbwso::where('name', $meter->cbwso)->first();
             $customer = Customer::where('meter_id', $meter->meter_id)->first();
             $value = $matches;
