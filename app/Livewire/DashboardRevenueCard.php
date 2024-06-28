@@ -30,7 +30,7 @@ class DashboardRevenueCard extends Component
         if ($this->last_income > 0) {
             $this->increase = number_format(($this->income / $this->last_income * 100), 0);
         } else if ($this->income > 0) {
-            $this->increase = 1000;
+            $this->increase = 100;
         } else {
             $this->increase = 0;
         }
@@ -49,6 +49,14 @@ class DashboardRevenueCard extends Component
             ->whereBetween('created_at', [$startOfLastMonth, $endOfLastMonth])
             ->sum('income');
 
+        if ($this->last_income > 0) {
+            $this->increase = number_format(($this->income / $this->last_income * 100), 0);
+        } else if ($this->income > 0) {
+            $this->increase = 100;
+        } else {
+            $this->increase = 0;
+        }
+
         $this->badge = "This Month";
     }
 
@@ -62,6 +70,14 @@ class DashboardRevenueCard extends Component
         $this->last_income = DailyIncome::query()
             ->whereBetween('created_at', [$startOfLastYear, $endOfLastYear])
             ->sum('income');
+
+        if ($this->last_income > 0) {
+            $this->increase = number_format(($this->income / $this->last_income * 100), 0);
+        } else if ($this->income > 0) {
+            $this->increase = 100;
+        } else {
+            $this->increase = 0;
+        }
 
         $this->badge = "This Year";
     }
@@ -79,7 +95,7 @@ class DashboardRevenueCard extends Component
         if ($this->last_income > 0) {
             $this->increase = number_format(($this->income / $this->last_income * 100), 0);
         } else if ($this->income > 0) {
-            $this->increase = 1000;
+            $this->increase = 100;
         } else {
             $this->increase = 0;
         }
@@ -95,9 +111,10 @@ class DashboardRevenueCard extends Component
             $this->daily_income = Cbwso::query()
                 ->where('cbwso', $user->cbwso)
                 ->sum('daily_income');
+
             $this->monthly_income = Cbwso::query()
                 ->where('cbwso', $user->cbwso)
-                ->sum('daily_income');
+                ->sum('monthly_income');
 
             $this->yearly_income = Cbwso::query()
                 ->where('cbwso', $user->cbwso)
@@ -110,7 +127,7 @@ class DashboardRevenueCard extends Component
 
             $this->monthly_income = Cbwso::query()
                 ->where('district', $user->district)
-                ->sum('daily_income');
+                ->sum('monthly_income');
 
             $this->yearly_income = Cbwso::query()
                 ->where('district', $user->district)
@@ -123,7 +140,7 @@ class DashboardRevenueCard extends Component
 
             $this->monthly_income = Cbwso::query()
                 ->where('region', $user->region)
-                ->sum('daily_income');
+                ->sum('monthly_income');
 
             $this->yearly_income = Cbwso::query()
                 ->where('region', $user->region)
@@ -134,7 +151,7 @@ class DashboardRevenueCard extends Component
                 ->sum('daily_income');
 
             $this->monthly_income = Cbwso::query()
-                ->sum('daily_income');
+                ->sum('monthly_income');
 
             $this->yearly_income = Cbwso::query()
                 ->sum('yearly_income');
@@ -145,7 +162,7 @@ class DashboardRevenueCard extends Component
                 ->sum('daily_income');
 
             $this->monthly_income = Cbwso::query()
-                ->sum('daily_income');
+                ->sum('monthly_income');
 
             $this->yearly_income = Cbwso::query()
                 ->sum('yearly_income');

@@ -5,6 +5,7 @@ namespace App\Livewire\Forms;
 use App\Http\Controllers\SMSController;
 use App\Models\Cbwso;
 use App\Models\Customer;
+use App\Models\DailyIncome;
 use App\Models\Meter;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -120,11 +121,18 @@ class PurchaseForm extends Component
                 $cbwso->daily_income = floatval(str_replace(",", "", $cbwso->daily_income)) + floatval(str_replace(",", "", $this->amount));
             } else {
                 $cbwso->daily_income = $this->amount;
+                DailyIncome::create([
+                    "region" => $cbwso->region,
+                    "district" => $cbwso->district,
+                    "cbwso" => $cbwso->name,
+                    "income" => $cbwso->income
+                ]);
             }
             if ($cbwso->updated_at->isSameMonth(Carbon::now())) {
                 $cbwso->monthly_income = $cbwso->monthly_income + $this->amount;
             } else {
                 $cbwso->monthly_income = $this->amount;
+                dd($cbwso->monthly_income);
             }
             if ($cbwso->updated_at->isSameYear(Carbon::now())) {
                 $cbwso->yearly_income = floatval(str_replace(",", "", $cbwso->yearly_income)) + floatval(str_replace(",", "", $this->amount));

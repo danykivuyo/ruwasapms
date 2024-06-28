@@ -19,18 +19,40 @@ class DashboardSMSGatewayStatus extends Component
         if ($response === FALSE) {
             $this->logs = [];
         } else {
-            $this->logs = json_decode($response, true)['messages'];
+            $arr = array();
+            $logs = json_decode($response, true)['messages'];
+            foreach ($logs as $log) {
+                $smsParts = explode('#', $log['sms']);
+                if (isset($smsParts[1])) {
+                    array_push($this->logs, $log);
+                } else {
+
+                }
+            }
         }
 
     }
 
     public function fetchStatus()
     {
-        $response = file_get_contents($this->url);
-        if ($response === FALSE) {
+        try {
+            $response = file_get_contents($this->url);
+            if ($response === FALSE) {
+                $this->logs = [];
+            } else {
+                $arr = array();
+                $logs = json_decode($response, true)['messages'];
+                foreach ($logs as $log) {
+                    $smsParts = explode('#', $log['sms']);
+                    if (isset($smsParts[1])) {
+                        array_push($this->logs, $log);
+                    } else {
+
+                    }
+                }
+            }
+        } catch (Exception $e) {
             $this->logs = [];
-        } else {
-            $this->logs = json_decode($response, true)['messages'];
         }
     }
 }
