@@ -18,20 +18,24 @@ class SMSGateway extends Controller
         $this->meter_number = substr($request->from_number, -9);
         $this->meter_number = "0" + $this->meter_number;
         $meter = Meter::where('meter_number', $this->meter_number)->first();
-        // return $this->meter_number;
-        // return $meter->cbwso;
-        // preg_match('/#(\d+\.\d+)\r\n#0$/', $request->sms, $matches);
-        preg_match('/#(\d+\.\d{2})\\\\r\\\\n/', $request->sms, $matches);
-        // return $matches;
-        // return "$request->sms";
+        preg_match('/#(\d+\.\d+)\r\n#0$/', $request->sms, $match);
+        if (isset($match[0])) {
+            $matches = $match;
+        }
+        preg_match('/\d+\.\d+/', $request->sms, $match);
+        if (isset($match[0])) {
+            $matches = $match;
+        }
+        preg_match('/#(\d+\.\d{2})\\\\r\\\\n/', $request->sms, $match);
+        if (isset($match[0])) {
+            $matches = $match;
+        }
         if (!empty($matches)) {
             $cbwso = Cbwso::where('name', $meter->cbwso)->first();
             $customer = Customer::where('meter_id', $meter->meter_id)->first();
             $value = $matches[1];
             $meter->balance = $value;
-            // return $meter->balance;
             $customer->balance = number_format($value * $cbwso->tarrif, 2);
-            // return $customer->balance;
             $customer->save();
             $meter->save();
 
