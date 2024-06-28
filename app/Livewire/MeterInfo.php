@@ -113,7 +113,6 @@ class MeterInfo extends Component
         $meter->meter_number = $this->meter_no;
         $meter->lat = $this->lat;
         $meter->lon = $this->lon;
-
         $meter->save();
     }
 

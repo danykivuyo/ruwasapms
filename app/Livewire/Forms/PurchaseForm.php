@@ -67,7 +67,7 @@ class PurchaseForm extends Component
                     $this->user = $user;
                     $this->user_id = $this->user->tag_id;
                     $this->user_name = $this->user->name;
-                    $this->balance = number_format(floatval($this->user->balance), 2) . " TZS";
+                    $this->balance = number_format(floatval(str_replace(",", "", $this->user->balance)), 2) . " TZS";
 
                 }
             } else if (str_starts_with($meter->meter_id, "P")) {
@@ -110,14 +110,14 @@ class PurchaseForm extends Component
         if (str_starts_with($this->meter_id, 'H')) {
             $cbwso = Cbwso::where('name', $meter->cbwso)->first();
             if ($cbwso) {
-                $meter->balance = number_format(floatval($this->amount) / floatval($cbwso->tarrif) + floatval($meter->balance), 4);
+                $meter->balance = number_format(floatval(str_replace(",", "", $this->amount)) / floatval(str_replace(",", "", $cbwso->tarrif)) + floatval(str_replace(",", "", $meter->balance)), 4);
             } else {
                 session()->flash('error', 'Register This CBWSO first!');
                 return;
                 // $meter->balance = ($this->amount / 1000) + $meter->balance;
             }
             if ($cbwso->updated_at->isToday()) {
-                $cbwso->daily_income = floatval($cbwso->daily_income) + floatval($this->amount);
+                $cbwso->daily_income = floatval(str_replace(",", "", $cbwso->daily_income)) + floatval(str_replace(",", "", $this->amount));
             } else {
                 $cbwso->daily_income = $this->amount;
             }
@@ -127,7 +127,7 @@ class PurchaseForm extends Component
                 $cbwso->monthly_income = $this->amount;
             }
             if ($cbwso->updated_at->isSameYear(Carbon::now())) {
-                $cbwso->yearly_income = floatval($cbwso->yearly_income) + floatval($this->amount);
+                $cbwso->yearly_income = floatval(str_replace(",", "", $cbwso->yearly_income)) + floatval(str_replace(",", "", $this->amount));
             } else {
                 $cbwso->yearly_income = $this->amount;
             }
@@ -135,7 +135,7 @@ class PurchaseForm extends Component
             $meter->save();
             $this->meter = $meter;
             $user = Customer::where('id', $this->user->id)->first();
-            $user->balance = number_format((floatval($user->balance) + floatval($this->amount)), 2);
+            $user->balance = number_format((floatval(str_replace(",", "", $user->balance)) + floatval(str_replace(",", "", $this->amount))), 2);
             $user->save();
             $sms->hhc_recharge_sms($this->meter->meter_number, number_format($this->amount / $cbwso->tarrif, 2));
             $sms->hhc_recharge_customer_sms($this->user->phone, $this->meter->meter_id, $this->amount, number_format($this->amount / $cbwso->tarrif, 2));
