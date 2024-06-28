@@ -9,7 +9,7 @@
         <h5 class="card-title">SMS Gateway Status</h5>
 
         <div class="activity" wire:poll.1000ms="fetchStatus()">
-            @foreach (collect($this->logs)->take(1) as $log)
+            @foreach (collect($this->logs)->take(5) as $log)
                 <div class="activity-item d-flex">
                     <div class="activite-label">
                         @php
