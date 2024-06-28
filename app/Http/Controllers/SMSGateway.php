@@ -29,6 +29,7 @@ class SMSGateway extends Controller
             $customer = Customer::where('meter_id', $meter->meter_id)->first();
             $value = $matches[1];
             $meter->balance = $value;
+            return $meter->balance;
             $customer->balance = number_format($value * $cbwso->tarrif, 2);
             return $customer->balance;
             $customer->save();
