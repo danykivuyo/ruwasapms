@@ -22,14 +22,16 @@ class SMSGateway extends Controller
         $matches = array();
         if (isset($match[0])) {
             $matches = $match;
-        }
-        preg_match('/\d+\.\d+/', $request->sms, $match);
-        if (isset($match[0])) {
-            $matches = $match;
-        }
-        preg_match('/#(\d+\.\d{2})\\\\r\\\\n/', $request->sms, $match);
-        if (isset($match[0])) {
-            $matches = $match;
+        } else {
+            preg_match('/\d+\.\d+/', $request->sms, $match);
+            if (isset($match[0])) {
+                $matches = $match;
+            } else {
+                preg_match('/#(\d+\.\d{2})\\\\r\\\\n/', $request->sms, $match);
+                if (isset($match[0])) {
+                    $matches = $match;
+                }
+            }
         }
         if (!empty($matches)) {
             $cbwso = Cbwso::where('name', $meter->cbwso)->first();
