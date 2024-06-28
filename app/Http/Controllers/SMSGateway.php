@@ -19,6 +19,7 @@ class SMSGateway extends Controller
         $this->meter_number = "0" + $this->meter_number;
         $meter = Meter::where('meter_number', $this->meter_number)->first();
         preg_match('/#(\d+\.\d+)\r\n#0$/', $request->sms, $match);
+        $matches = array();
         if (isset($match[0])) {
             $matches = $match;
         }
