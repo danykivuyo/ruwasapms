@@ -40,6 +40,7 @@ class DashboardRevenueCard extends Component
 
     public function monthly()
     {
+        $this->fetch();
         $this->income = $this->monthly_income;
         $startOfLastMonth = Carbon::now()->subMonth()->startOfMonth();
         $endOfLastMonth = Carbon::now()->subMonth()->endOfMonth();
@@ -53,6 +54,7 @@ class DashboardRevenueCard extends Component
 
     public function yearly()
     {
+        $this->fetch();
         $this->income = $this->yearly_income;
         $startOfLastYear = Carbon::now()->subYear()->startOfYear();
         $endOfLastYear = Carbon::now()->subYear()->endOfYear();
@@ -66,7 +68,29 @@ class DashboardRevenueCard extends Component
 
     public function mount()
     {
-        $user = User::find(Auth::user()->id);
+        $this->fetch();
+        $this->income = $this->daily_income;
+        $yesterday = Carbon::yesterday()->toDateString();
+
+        $this->last_income = DailyIncome::query()
+            ->whereDate('created_at', $yesterday)
+            ->sum('income');
+
+        if ($this->last_income > 0) {
+            $this->increase = number_format(($this->income / $this->last_income * 100), 0);
+        } else if ($this->income > 0) {
+            $this->increase = 1000;
+        } else {
+            $this->increase = 0;
+        }
+
+        $this->badge = "Today";
+
+    }
+
+    public function fetch()
+    {
+        $user = User::find(Auth::user()->id)->first();
         if ($user->role == "cbwso") {
             $this->daily_income = Cbwso::query()
                 ->where('cbwso', $user->cbwso)

@@ -21,7 +21,7 @@
                     <i class="bi bi-cash-stack"></i>
                 </div>
                 <div class="ps-3">
-                    <h6>TZS{{ number_format($income, 2) }}</h6>
+                    <h6>TSh {{ number_format($income, 2) }}</h6>
                     <span class="text-success small pt-1 fw-bold">{{ $increase }}%</span> <span
                         class="text-muted small pt-2 ps-1">increase</span>
 
