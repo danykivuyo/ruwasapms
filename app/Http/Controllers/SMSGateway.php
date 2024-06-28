@@ -30,6 +30,7 @@ class SMSGateway extends Controller
             $value = $matches[1];
             $meter->balance = $value;
             $customer->balance = number_format($value * $cbwso->tarrif, 2);
+            return $customer->balance;
             $customer->save();
             $meter->save();
 
