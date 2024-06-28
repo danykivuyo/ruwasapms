@@ -38,7 +38,7 @@ class SMSGateway extends Controller
             $matches[0] = $element[0];
         }
         // return $matches;
-        if ($matches != null) {
+        if (isset($matches[0])) {
             $cbwso = Cbwso::where('name', $meter->cbwso)->first();
             $customer = Customer::where('meter_id', $meter->meter_id)->first();
             $value = $matches[0];
