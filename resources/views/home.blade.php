@@ -1,33 +1,33 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="pagetitle">
-  <h1>Dashboard</h1>
-  <nav>
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a wire:navigate href="{{ route('home') }}">Home</a></li>
-      <li class="breadcrumb-item active">Dashboard</li>
-    </ol>
-  </nav>
-</div><!-- End Page Title -->
-<section class="section dashboard">
-    <div class="row">
-
-      <!-- Left side columns -->
-      <div class="col-lg-8">
+    <div class="pagetitle">
+        <h1>Dashboard</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a wire:navigate href="{{ route('home') }}">Home</a></li>
+                <li class="breadcrumb-item active">Dashboard</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+    <section class="section dashboard">
         <div class="row">
 
-          @livewire('dashboard-meters-card')
+            <!-- Left side columns -->
+            <div class="col-lg-8">
+                <div class="row">
 
-          @livewire('dashboard-customers-card')
-          
-          @livewire('dashboard-revenue-card')
+                    @livewire('dashboard-meters-card')
 
-          @livewire('dashboard-reports')
+                    @livewire('dashboard-customers-card')
 
-          {{-- @livewire('meters') --}}
+                    @livewire('dashboard-revenue-card')
 
-          {{-- <!-- Top Selling -->
+                    @livewire('dashboard-reports') --}}
+
+                    {{-- @livewire('meters') --}}
+
+                    {{-- <!-- Top Selling -->
           <div class="col-12">
             <div class="card top-selling overflow-auto">
 
@@ -101,15 +101,16 @@
             </div>
           </div><!-- End Top Selling --> --}}
 
-        </div>
-      </div><!-- End Left side columns -->
+                </div>
+            </div><!-- End Left side columns -->
 
-      <!-- Right side columns -->
-      <div class="col-lg-4">
+            <!-- Right side columns -->
+            <div class="col-lg-4">
 
-        @livewire('dashboard-meter-logs')
+                {{-- @livewire('dashboard-meter-logs') --}}
+                @livewire('dashboard-s-m-s-gateway-status')
 
-        {{-- <!-- Budget Report -->
+                {{-- <!-- Budget Report -->
         <div class="card">
           <div class="filter">
             <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
@@ -183,9 +184,9 @@
           </div>
         </div><!-- End Budget Report --> --}}
 
-        @livewire('dashboard-income')
+                @livewire('dashboard-income')
 
-        {{-- <!-- Website Traffic -->
+                {{-- <!-- Website Traffic -->
         <div class="card">
           <div class="filter">
             <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
@@ -263,9 +264,8 @@
           </div>
         </div><!-- End Website Traffic --> --}}
 
-      </div><!-- End Right side columns -->
+            </div><!-- End Right side columns -->
 
-    </div>
-  </section>
-
+        </div>
+    </section>
 @endsection
