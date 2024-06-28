@@ -14,7 +14,7 @@
                     <div class="activite-label">
                         @php
                             $smsParts = explode('#', $log['sms']);
-                            if (!isset(smsParts[1])) {
+                            if (!isset($smsParts[1])) {
                                 continue;
                             }
                             $meter_id = $smsParts[1];
