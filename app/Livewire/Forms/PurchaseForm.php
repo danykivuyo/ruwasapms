@@ -125,7 +125,7 @@ class PurchaseForm extends Component
                     "region" => $cbwso->region,
                     "district" => $cbwso->district,
                     "cbwso" => $cbwso->name,
-                    "income" => $cbwso->income
+                    "income" => $cbwso->daily_income
                 ]);
             }
             if ($cbwso->updated_at->isSameMonth(Carbon::now())) {

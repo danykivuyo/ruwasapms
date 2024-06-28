@@ -28,9 +28,9 @@ class DashboardRevenueCard extends Component
             ->sum('income');
 
         if ($this->last_income > 0) {
-            $this->increase = number_format(($this->income / $this->last_income * 100), 0);
+            $this->increase = number_format((($this->income - $this->last_income) / $this->last_income * 100), 0);
         } else if ($this->income > 0) {
-            $this->increase = 100;
+            $this->increase = 1000;
         } else {
             $this->increase = 0;
         }
@@ -50,9 +50,9 @@ class DashboardRevenueCard extends Component
             ->sum('income');
 
         if ($this->last_income > 0) {
-            $this->increase = number_format(($this->income / $this->last_income * 100), 0);
+            $this->increase = number_format((($this->income - $this->last_income) / $this->last_income * 100), 0);
         } else if ($this->income > 0) {
-            $this->increase = 100;
+            $this->increase = 1000;
         } else {
             $this->increase = 0;
         }
@@ -72,9 +72,9 @@ class DashboardRevenueCard extends Component
             ->sum('income');
 
         if ($this->last_income > 0) {
-            $this->increase = number_format(($this->income / $this->last_income * 100), 0);
+            $this->increase = number_format((($this->income - $this->last_income) / $this->last_income * 100), 0);
         } else if ($this->income > 0) {
-            $this->increase = 100;
+            $this->increase = 1000;
         } else {
             $this->increase = 0;
         }
@@ -93,9 +93,9 @@ class DashboardRevenueCard extends Component
             ->sum('income');
 
         if ($this->last_income > 0) {
-            $this->increase = number_format(($this->income / $this->last_income * 100), 0);
+            $this->increase = number_format((($this->income - $this->last_income) / $this->last_income * 100), 0);
         } else if ($this->income > 0) {
-            $this->increase = 100;
+            $this->increase = 1000;
         } else {
             $this->increase = 0;
         }
